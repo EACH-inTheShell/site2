@@ -1,7 +1,20 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+	head
+		meta(charset="utf-8")
+		link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono")
+		link(rel="stylesheet" href="/stylesheets/style.css")
+		link(rel="icon" href="/favicon.png")
+		title [E]ACH inTheShell
+
+	body
+		header
+			.nav-container
+				nav
+					.logo
+						a(href="/" style='font-size: xx-large;') inTheShell_
+
+					.nav-bar
+						a(href="/atividades") Atividades
+						a(href="/sobre") Sobre
+		block content
