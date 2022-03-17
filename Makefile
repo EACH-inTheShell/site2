@@ -3,7 +3,7 @@
 all: .docker-build
 
 start: .docker-build
-	docker start site_eits 2> /dev/null || docker run -d -p 127.0.0.1:3000:3000 --name site_eits site_eits
+	docker start site_eits 2> /dev/null || docker run -e NODE_ENV=production -d -p 127.0.0.1:3000:3000 --name site_eits site_eits
 
 dev: .docker-build
 	docker run -it -v ${CURDIR}/site:/srv/site -p 127.0.0.1:3000:3000 --name site_eits site_eits
