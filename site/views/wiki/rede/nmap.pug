@@ -1,0 +1,174 @@
+extends ../../_layouts/default
+
+block content
+
+	.subtitle
+		h1
+			a(href='/rede') &larr; #[a(href='') Nmap]
+
+		sub ferramenta (linux, mac, windows)
+
+	h4#descricao.subtitle Descrição:
+	.container
+		p
+			| O 
+			code nmap
+			|  é uma ferramenta de scan que enumera uma rede buscando
+			| &#x9;por máquinas e as portas e serviços abertos nessas máquinas.
+		p
+			| Ele também faz uso de scripts internos para buscar por versões e
+			| vulnerabilidades desses serviços encontrados.
+	h4#uso.subtitle Uso:
+	.container
+		code nmap [opção]... &lt;alvo&gt;
+		p
+			| O 
+			code &lt;alvo&gt;
+			|  é um endereço IP, um conjunto de IPs escrito
+			| &#x9;com a 
+			a(href='https://pt.wikipedia.org/wiki/Roteamento_entre_dom%C3%ADnios_sem_classes#Nota.C3.A7.C3.A3o_standard' target='_blank') notação CIDR&nearr;
+			|  ou até um nome de domínio (como
+			code google.com
+			| ).
+		h4#opcoes.subtitle Opções:
+		ul
+			li
+				b -p &lt;porta(s)&gt;
+				| : 
+				p
+					| define quais portas escanear. A notação de
+					| portas pode ser:
+				ul
+					li
+						| somente um número (
+						code 80
+						| );
+					li
+						| um intervalo de portas indicadas por 
+						code
+							| &lt;primeira
+							| porta&gt;-&lt;última porta&gt;
+						| , podendo omitir uma ou
+						| &#x9;&#x9;&#x9;&#x9;&#x9;ambas as portas;
+					li
+						| uma combinação das duas acima separadas por vírgula (sem espaço).
+			li
+				b -sV
+				| : 
+				p Escaneia pela versão dos serviços encontrados;
+			li
+				b -sS
+				| : 
+				p
+					| Faz um Syn Scan; manda só o pacote SYN da sessão TCP e
+					| espera por uma resposta. Não consegue verificar qual o serviço, só
+					| quais portas estão abertas;
+			li
+				b -sC
+				| : 
+				p
+					| A mesma coisa que 
+					code --script default
+					|  (ver
+					| &#x9;&#x9;&#x9;--script abaixo);
+			li
+				b -Pn
+				| : 
+				p
+					| Pula o Ping Scan (um scan que acontece antes do scan de
+					| portas). Esse Ping Scan verifica se é possível se conectar a um
+					| computador e muito útil para scan envolvendo vários alvos;
+			li
+				b -T&lt;0-5&gt;
+				| : 
+				p
+					| Define a frequência de pacotes a ser enviado.
+					| Quando maior o número, mais pacotes por segundo, mas maior é a chance
+					| de que pacotes sejam perdidos e algumas portas abertas não sejam
+					| encontradas;
+			li
+				b -O
+				| : 
+				p
+					| Scan de Sistema Operacional. Um &quot;chute&quot; educado é feito
+					| sobre qual sistema operacional (e sua versão) está sendo utilizado na
+					| máquina alvo;
+			li
+				b -A
+				| : 
+				p
+					| Scan agressivo. Envolve os scans
+					code -O
+					| , 
+					code -sV
+					| , 
+					code -sC
+					|  e
+					code --traceroute
+					| ;
+			li
+				b --script &lt;script/categoria&gt;
+				| : 
+				p
+					| Roda todos os scripts de uma
+					| categoria ou um script específico sobre uma máquina. A ação dos scripts
+					| depende da escolha. Algumas das categorias são:
+				ul
+					li
+						b auth
+						| : Verifica autenticações padrão (como o login
+						code anonymous
+						|  do 
+						code FTP
+						| );
+					li
+						b default
+						| : São alguns dos scripts mais utilizados. é seguro,
+						| &#x9;&#x9;&#x9;&#x9;&#x9;rápido e generalizado;
+					li
+						b intrusive
+						| : Utiliza funcionalidades que podem estressar
+						| &#x9;&#x9;&#x9;&#x9;&#x9;muito o sistema remoto e possivelmente chegar a incapacita-lo.
+						| &#x9;&#x9;&#x9;&#x9;&#x9;Usar com responsabilidade;
+					li
+						b vuln
+						| : Busca por vulnerabilidades conhecidas nos serviços.
+				p
+					| Todos os scripts avulsos podem ser vistos 
+					a(href='https://nmap.org/nsedoc/' target='_blank') aqui&nearr;
+					|  e as
+					| &#x9;&#x9;&#x9;categorias 
+					a(href='https://nmap.org/nsedoc/' target='_blank') aqui&nearr;
+					| .
+	h4#exemplos.subtitle Exemplos:
+	.container
+		p
+			| Todos os endereços IP de 
+			code 192.168.0.0
+			|  a
+			code 192.168.0.255
+			| , testando as portas de 
+			code 0
+			|  a
+			code 65535
+			|  de cada maquina
+		code.tab.block nmap -p - 192.168.0.0/24
+		p
+			| Portas 
+			code 80
+			|  e 
+			code 1000
+			|  a 
+			code 1800
+			|  no endereço
+			| &#x9;IP 
+			code 192.168.1.10
+			| , rodando a coleção de scripts de vulnerabilidade
+			| &#x9;no alvo.
+		code.tab.block
+			| nmap -p 80,1000-1800 --script vuln
+			| 192.168.0.10
+		p
+			| Inferir versões dos serviços que estão abertos no endereço
+			| intheshell.page
+		code.tab.block nmap -sV intheshell.page

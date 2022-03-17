@@ -1,0 +1,91 @@
+extends ../../_layouts/default
+
+block content
+
+	.subtitle
+		h1
+			a(href='/forense') &larr; #[a(href='') exiftool]
+
+		sub ferramenta (linux, mac, windows)
+
+	h4#descricao.subtitle Descrição:
+	.container
+		p
+			| O 
+			code exiftool
+			|  é uma ferramenta para visualizar e editar os metadados de um arquivo (O 
+			a(href='https://exiftool.org/' target='_blank') site oficial&nearr;
+			|  contém uma tabela mostrando quais arquivos são suportados).
+	h4#uso.subtitle Uso:
+	.container
+		ul
+			li
+				| Ler os metadados de arquivo:
+			p
+				code.tab.block exiftool [opção] [-*TAG...] [--*TAG...] [arquivo]...
+			li
+				| Escrever os metadados em um arquivo:
+			p
+				code.tab.block exiftool [opção] -*TAG*[+-
+			li
+				| Copiar os metadados de um arquivo:
+			p
+				code.tab.block exiftool [opção] -tagsFromFile *SRCFILE* [-*SRCTAG*[&gt;*DSTTAG*]...] [arquivo]...
+		h4#opcoes.subtitle Opções:
+		ul
+			li
+				b -a &lt;-duplicates&gt;
+				| : imprime todos os metadados imprimindo também duplicados
+			li
+				b -ee &lt;extractEmbedded&gt;
+				| : extrai as informaçoes de arquivos embutidos
+			li
+				b -fast[NUM]
+				| : aumenta a velocidade de extração dos metadados
+			li
+				b -u &lt;-unknown&gt;
+				| : imprime as tags desconhecidas
+			li
+				b -U &lt;-unknown2&gt;
+				| : imprime as tags binárias desconhecidas
+	
+	h4#exemplos.subtitle Exemplos:
+	.container
+		ul
+			li
+				| Ler:
+				p
+					| Todos os metadados do arquivo 
+					code &quot;Imagem.jpg&quot;
+				code.tab.block exiftool -a Imagem.jpg
+				p
+					| Apenas os metadados que tem 
+					code &quot;size&quot;
+					|  e 
+					code &quot;image&quot;
+					|  na sua TAG e não tenham &quot;
+					code file
+					| &quot;  no arquivo &quot;
+					code picasso.png
+					| &quot;
+				code.tab.block exiftool -&quot;*size*&quot; -&quot;*image*&quot; --&quot;*file*&quot; picasso.png
+			
+			li
+				| Escrever:
+				p Uma tag em múltiplos arquivos
+				code.tab.block exiftool -artist=&quot;miku&quot; SEKAIDE.mp3 SENBONZAKURA.mp3
+				p
+					| Apagar a tag 
+					code &quot;artist&quot;
+					|  em no arquivo 
+					code &quot;aaa.png&quot;
+				code.tab.block exiftool -artist= aaa.png
+
+			li
+				| Copiar:
+				p
+					| Copiar todos os metadados do arquivo 
+					code &quot;papelparede.jpg&quot;
+					|  para o arquivo 
+					code &quot;wallpaper.jpg&quot;
+				code.tab.block exiftool -tagsFromFile papelparede.jpg wallpaper.jpg

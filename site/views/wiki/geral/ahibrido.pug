@@ -1,0 +1,37 @@
+extends ../../_layouts/default
+
+block content
+
+	.subtitle
+		h1
+			a(href='/geral') &larr; #[a(href='') Ataque híbrido]
+
+		sub técnica
+
+	h4#descricao.subtitle Descrição:
+	.container
+		p
+			| Ataque híbrido é um ataque combinatório composto de uma parte 
+			a(href='fbruta') Ataque de força bruta&nearr;
+			|  e a outra parte 
+			a(href='adicio') Ataque de dicionário&nearr;
+			| .
+		p Exemplo:
+		p
+			| Usando a lista: &quot;senha&quot;, &quot;admin&quot; e &quot;user&quot; com brute force de 3 números resulta em:
+		p
+		p
+			| senha000, senha001, senha002, ..., admin000, admin001, admin002, ..., user000, user001, user002, user003, ... user999
+	h4#ferramentas.subtitle Ferramentas que utilizam ataque híbrido:
+	.container
+		ul
+			li
+				a(href='/hashcat') hashcat
+	h4#vertambem.subtitle Ver também:
+	.container
+		ul
+			li
+				a(href='/adicio') Ataque de dicionário
+			li
+				a(href='/fbruta') Ataque de força bruta
+
