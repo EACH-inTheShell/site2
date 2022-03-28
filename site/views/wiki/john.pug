@@ -1,0 +1,44 @@
+extends ../_layouts/default
+
+block content
+
+	.subtitle
+		h1
+			a(href='/wiki') &larr; #[a(href='') JohnTheRipper]
+
+		sub ferramenta (linux, mac, windows)
+
+	h4#descricao.subtitle Descrição:
+	
+	.container
+		p
+			code john
+			|  é uma ferramenta para craquear hashes em arquivos.
+		p
+			| A ferramenta é um pouco enjoado quanto à formatação do arquivo de entrada,
+			| então para algumas das hashes que você achar, vai ter que &quot;traduzi-las&quot; para
+			| serem consumidas como entrada.
+		ul
+			li
+				| ssh2john - chaves SSH para o formato john
+			li
+				| unshadow - junta os arquivos &grave;/etc/passwd&grave; e &grave;/etc/shadow&grave; no formato john
+	
+	h4#uso.subtitle Uso:
+	
+	.container
+		code john [opção]... &lt;arquivo hash&gt;
+		h4#opcoes.subtitle Opções:
+		ul
+			li
+				b --wordlist=&lt;wordlist&gt;
+				| : 
+				p
+					| Define uma 
+					a(href='/wlist') wordlist
+					|  customizada
+					| &#x9;&#x9;&#x9;para utilizar
+	
+	h4#exemplos.subtitle Exemplos:
+	
+	.container

@@ -1,0 +1,99 @@
+extends ../_layouts/default
+
+block content
+
+	.subtitle
+		h1
+			a(href='/rede') &larr; #[a(href='') Hydra]
+
+		sub ferramenta (linux, mac, windows)
+
+	h4#descricao.subtitle Descrição:
+	.container
+		p
+			code hydra
+			|  é utilizada para fazer ataques de 
+			a(href='adicio') dicionário
+			|  e 
+			a(href='fbruta') força bruta
+			|  em serviços expostos na rede como SSH, HTTP-POST e FTP.
+	h4#uso.subtitle Uso:
+	.container
+		code hydra [opções] &lt;configuração do alvo&gt;
+		p A configuração do alvo pode ser definida de duas formas:
+		ul
+			li
+				code &lt;serviço&gt;://&lt;alvo&gt;/[opções do serviço]
+			li
+				code &lt;alvo&gt; &lt;serviço&gt; [opções do serviço]
+		h4#opcoes.subtitle Opções:
+		ul
+			li
+				b -l &lt;usuário&gt;
+				| : 
+				p define o nome de usuário
+			li
+				b -L &lt;wordlist&gt;
+				| : 
+				p
+					| define uma 
+					a(href='/wlist') wordlist
+					|  de nomes de usuário
+			li
+				b -p &lt;senha&gt;
+				| : 
+				p define uma senha
+			li
+				b -P &lt;wordlist&gt;
+				| : 
+				p
+					| define uma 
+					a(href='/wlist') wordlist
+					|  de senhas
+			li
+				b -u
+				| : 
+				p
+					| Troca a rotação de usuários e senhas. Por padrão, o hydra
+					| testa todas as senhas com um usuário só para depois ir para o próximo
+					| usuário (rotacionando a senha). Essa opção troca a rotação para testar
+					| todos os usuários em uma senha antes de ir para a próxima senha. útil
+					| para um ataque com poucos usuários e muitas senhas
+			li
+				b -s
+				| : 
+				p
+					| Define a porta caso ela não esteja na porta padrão do
+					| serviço
+			li
+				b -t
+				| : 
+				p Define o número de threads máxima a ser utilizada
+	h4#exemplos.subtitle Exemplos:
+	.container
+		p
+			| Usar o usuário 
+			code user
+			|  e 
+			a(href='/wlist') wordlist
+			|  de senhas 
+			a(href='')
+				code ./rockyou.txt
+			|  para acessar o servidor ssh 
+			code intheshell.page
+		code.tab.block hydra -l user -P ./rockyou.txt intheshell.page ssh
+		p
+			| Usar o usuário 
+			code admin
+			|  com a 
+			a(href='/wlist') wordlist
+			|  de senhas 
+			code
+				a(href='') ./rockyou.txt
+			|  para atacar a página de login 
+			code https://intheshell.page/login.php
+			|  onde o input de nome de usuário é 
+			code username
+			|  e a mensagem de erro que aparece quando você erra a senha é &apos;Senha inválida&apos;
+		code.tab.block
+			| hydra -l admin -P ./rockyou.txt &quot;http-post-form://intheshell.page/login.php:username=^USER^&amp;senha=^PASS^:Senha inválida&quot;

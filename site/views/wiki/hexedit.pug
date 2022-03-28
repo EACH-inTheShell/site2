@@ -1,0 +1,75 @@
+extends ../_layouts/default
+
+block content
+	.subtitle
+		h1
+			a(href='/forense') &larr; #[a(href='') hexedit]
+
+		sub ferramenta (linux, mac)
+
+	h4#descricao.subtitle Descrição:
+	.container
+		p
+			| Para o sistema operacional windows existe o 
+			a(href='https://mh-nexus.de/en/hxd/' target='_blank') Hexeditor&nearr;
+		p
+			| O 
+			code hexedit
+			|  é uma ferramenta para ver e editar arquivos em binários pelo terminal. Diferente de um bloco de notas normal é possível mexer com os bytes de um arquivo.
+		img(src='assets/hexedit.png' width='75%')
+		p
+			| Na interface do hexedit o bloco da esquerda representa o byte inicial da linha, o bloco do meio representa os dados do arquivo em hexadecimal e o bloco da direita representa os dados do arquivo em ASCII (alguns dados não podem ser representados com caracteres ASCII, então eles são representados por pontos &apos;.&apos;)
+	h4#uso.subtitle Uso:
+	.container
+		ul
+			li
+				| Abrir o hexedit:
+			p
+				code.tab.block  hexedit [opção] [arquivo]...
+		h4#opcoes.subtitle Opções:
+		ul
+			li
+				b -s/--sector
+				| : formata o programa em um tamanho fixo.
+			li
+				b -m/--maximize
+				| : tenta maximizar o tamanho do programa.
+			li
+				b -h/--help
+				| : mostra como usar.
+	h4#exemplos.subtitle CheatSheet:
+	.container
+		ul
+			li
+				b F1:
+				p Abrir menu de ajuda 
+			li
+				b F2:
+				p Salvar o arquivo 
+			li
+				b F3:
+				p Carregar um arquivo 
+			li
+				b Setas:
+				p Se movimentar pelo arquivo 
+			li
+				b &lt;, &gt;:
+				p Ir para o começo e o fim do arquivo respectivamente 
+			li
+				b Return:
+				p Move para o endereõ especificado (em hexadecimal) 
+			li
+				b Ctrl-Z:
+				p Suspender 
+			li
+				b Ctrl-X:
+				p Salvar e sair 
+			li
+				b Ctrl-U:
+				p Desfazer todas as alterações 
+			li
+				b Crtl-S:
+				p Procurar por expressão à partir de onde o cursor está até o fim do arquivo 
+			li
+				b Ctrl-R:
+				p Procurar por expressão do inicio do arquivo até onde o cursor está 

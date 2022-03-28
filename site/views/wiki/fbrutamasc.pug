@@ -1,0 +1,122 @@
+extends ../_layouts/default
+
+block content
+
+	.subtitle
+		h1
+			a(href='/hashcat') &larr; #[a(href='') hashcat (fbruta+máscara)]
+
+		sub ferramenta (linux, mac, windows)
+
+	h4#descricao.subtitle Descrição:
+	
+	.container
+		p
+			| Para fazer um ataque de força bruta É necessario especificar quais vão ser os caracteres testados em cada caractere da senha.
+		p
+			| Por exemplo testar todas as possibilidades em que os 4 primeiros dígitos são números e os 3 últimos caracteres são letras ficaria: &quot;
+			code ?d?d?d?d?l?l?l
+			| &quot;.
+		p
+			| Os 
+			a(href='https:/hashcat.net/wiki/doku.php?id=mask_attack')
+				i charsets&nearr;
+			|  (lista de caracteres) são uma lista com as letras/números/símbolos que serão usadas em cada parte do ataque de força bruta da senha.
+		p
+			| No exemplo acima os pontos de interrogação indicam que um caractere vai ser substitupido e a letra &quot;
+			code d
+			| &quot; para representar a substituição por números de 0 atÉ 9 e a letra &quot;
+			code l
+			| &quot; para a substituição por letras de a atÉ z.
+	
+	h4#exemplos.subtitle Exemplos:
+	
+	.container
+		p
+			| Sabendo que o começo da senha É &quot;
+			code alberto
+			| &quot; e termina com 4 números:
+		p
+			code.tab.block hashcat -a 3 hash.txt alberto?d?d?d?d
+		p
+			| Especificanado mais de um 
+			i charset
+			| : (Sabendo que o começo da senha É &quot;
+			code lol
+			| &quot; ou &quot;
+			code dota
+			| &quot; e tem 4 letras depois)
+		p
+			code.tab.block hashcat -a 3 hash.txt -1 lol?l?l?l?l -2 dota?l?l?l?l
+		p
+			| Um dos problemas do hashcat É só poder usar um tamanho fixo para crackear a senha, por isso pode ser usado o &quot;--increment&quot; para tentar desde um caractere atÉ o caractere atual.
+		p
+			code.tab.block hashcat -a 3 hash.txt ?l?d?d?l?l --increment
+		p No exemplo acima ele vai testar: ?l, ?l?d, ?l?d?d, ?l?d?d?l e ?l?d?d?l?l
+	
+	h4#customizando.subtitle
+		b
+			| Customizando seu próprio 
+			i charset
+	
+	.container
+		p
+			| Para customizar seu próprio 
+			i charset
+			|  o hashcat libera 4 parametros que podem ser configurados pelo usuário
+		p
+			| Os parâmetros são &quot;
+			code --custom-charset1=charset
+			| &quot; onde o &quot;
+			i charset
+			| &quot; É substituído pelo 
+			i charset
+			|  desejado. Mas para a praticidade existe um comando mais curto &quot;
+			code -1
+			| &quot;.
+		p
+			| Um ataque de força bruta apenas com as letras &quot;
+			code a
+			| &quot;, &quot;
+			code b
+			| &quot; e &quot;
+			code c
+			| &quot; em um hash de 4 caracteres pode ser feito usando:
+		p
+			code.tab.block hashcat -a 3 hash.txt -1 abc ?1?1?1?1
+		p
+			| É possível customizar seus próprios 
+			i charsets
+			|  e colocar eles em um arquivo &quot;.hcchr&quot; para passar eles como parâmetros
+		p
+			| Exemplo: (sendo &quot;
+			code charset.hcchr
+			| &quot; o arquivo com o 
+			i charset
+			| )
+		p
+		p
+			code.tab.block hashcat -a 3 hash.txt -2 arquivo.hcchr ?2?2?2?2
+	
+	h4#customizando.subtitle
+		b Customizando seu próprio arquivo de máscara
+	
+	.container
+		p
+			| O arquivo vai conter os três 
+			i charsets
+			|  separados por vírgulas e uma máscara
+		p Exemplo:
+		p
+			code.tab.block asdf,zxcv,qwer,poiu, ?2?3?4?1?2?3
+		p
+		p
+			| O 
+			i charset
+			|  1 vai ser: asdf. O 
+			i charset
+			|  2 vai ser : zxcv. O 
+			i charset
+			|  3 vai ser: qwer. E o 
+			i charset
+			|  4 vai ser: poiu. E a máscara vai ser ?2?3?4?1?2?3.

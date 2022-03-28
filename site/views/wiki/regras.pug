@@ -1,0 +1,78 @@
+extends ../_layouts/default
+
+block content
+	.subtitle
+		h1
+			a(href='/hashcat') &larr; #[a(href='') hashcat (regras)]
+
+		sub ferramenta (linux, mac, windows)
+
+	h4#descricao.subtitle Descrição:
+
+	.container
+		p
+			a(href='https://hashcat.net/wiki/doku.php?id=rule_based_attack') Aqui&nearr;
+			|  uma tabela completa de cada comando e o que cada comando faz e uma wiki mais aprofundada.
+		p
+			| As regras que forem colocadas aqui serão aplicadas em todas as palavras da lista escolhida.
+		p
+			| Para aplicar as regras no comando basta colocar &quot;-r&quot; e o nome do arquivo contendo as regras logo em seguida.
+		p Exemplo:
+		p
+			code.tab.block hashcat hashes.txt dicio.txt -r regras
+		p Aviso:
+		p
+			| é bom saber que existe um arquivo no &quot;~/.hashcat&quot; com o nome &quot;hashcat.potfile&quot; que contém todos os hashes crackeados.
+
+	h4#descricao.subtitle Criando suas regras
+
+	.container
+		p Exemplos:
+		p Terminação com &quot;2020&quot;:
+		p Conteúdo do arquivo de regras:
+		p
+			code.tab.block $2$0$2$0
+		p Começo com &quot;123&quot;, término com &quot;asdf&quot; e os dois juntos:
+		p Conteúdo do arquivo de regras:
+		p
+			code.tab.block ^3^2^1
+		p
+			code.tab.block $3$2$1
+		p
+			code.tab.block ^3^2^1 $a$s$d$f
+		p
+			b Aviso:
+		p
+			| O código funciona na ordem em que foi colocado os comandos. Ou seja colocar um comando que remove um caractere no fim da palavra (&quot;]&quot;) logo depois de ter adicionado um caractere (&quot;$x&quot;) vai cancelar o caractere adicionado no final.
+		p Conteúdo do arquivo de regras: (essa regra não vai mudar em nada a palavra)
+		p
+			code.tab.block $3 ]
+
+	h4#testando.subtitle Testando suas regras
+
+	.container
+		p Criar uma lista caso não tenha para testar suas regras.
+		p
+			| Usar o parametro &quot;--stdout&quot; para que seja impresso as palavras depois da regra ser aplicada.
+		p Exemplo:
+		p
+			code.tab.block hashcat -r regras --stdout lista.txt
+
+	h4#testando.subtitle Gerando regras automaticamente
+
+	.container
+		p Número aleatório de regras:
+		p
+			code --generate-rules=NUM
+		p Número mínimo e máximo respectivamente de regras:
+		p
+			code --generate-rules-func-min=NUM
+		p
+			code --generate-rules-func-max=NUM
+		p Os NUM serão substituídos pela quantidade desejada
+
+	h4#testando.subtitle Salvar as regras que conseguiram quebrar o hash
+
+	.container
+		p (Boa combinação com as regras geradas automaticamentes)
+		p --debug-mode=1 --debug-file=arquivodesaída.regra

@@ -1,0 +1,38 @@
+extends ../_layouts/default
+
+block content
+	.subtitle
+		h1
+			a(href='/cripto') &larr; #[a(href='') Aleatoriedade]
+
+		sub categoria
+
+	h4#descricao.subtitle Descrição:
+	
+	.container
+		p Existem 3 tipos de geradores de números aleatórios:
+		ul
+			li
+				| Geradores de números aleatórios (TRNG):
+				p São feitos a partir de processos físicos e não é possível recriar.
+				p Por exemplo: ao jogar uma moeda pra cima, variação de ruídos do ar.
+					
+			li
+				| Geradores de números pseudo-aleatórios(PRNG):
+				p
+						| São feitos a partir de uma semente (um número aleatório escolhido para poder gerar o número aleatório).
+				p
+						| Depois do número ser gerado ele é executado dentro de uma função várias vezes, cada vez que ele for executado nessa função ele perde um pouco de sua aleatoriedade e começa a ser determinístico
+				p
+						| Método de quadrados médios é um desses exemplos, nele a primeira semente é multiplicada por si mesma gerando assim uma nova semente então o número do meio é retirado e se torna a nova semente, assim se repitindo o processo até atingir o tamanho da semente desejada.
+				p Exemplo:
+				p Semente1 = 121
+				p Semente1 = Semente1 * Semente1 = 14641
+				p Semente2 = 464
+				
+			li
+				| Geradores de números pseudo-aleatórios criptograficamente seguros (CPRNG):
+				p São números pseudo-aleatórios, mas os números são imprevisíveis.
+				p Definição informal
+				p
+					| Dado n bits de saída de Si até Si+n-1 é computacinalmente impossível construir Sn
