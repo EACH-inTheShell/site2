@@ -20,9 +20,9 @@ block content
 			a(href='https://hashcat.net/wiki/#howtos_videos_papers_articles_etc_in_the_wild' target='_blank') site&nearr;
 			|  mostra ferramentas e sites auxiliares bem úteis.
 		p
-			a(href='/hashid') hashid
+			a(href='/wiki/hashid') hashid
 			|  e o 
-			a(href='/hashcat')  hashcat
+			a(href='/wiki/hashcat')  hashcat
 			|   fazem uma boa combinação também!
 		p
 			| Para extrair hashes de arquivos existe esse 
@@ -58,29 +58,29 @@ block content
 			li
 				b -r &lt;--rules-file&gt;
 				| : recebe um arquivo com as regras aplicadas para cada palavra da lista de palvras. Explicação de como usar 
-				a(href='/hashcat/regras') AQUI
+				a(href='/wiki/hashcat/regras') AQUI
 			
 			li
 				b -a &lt;--attack-mode&gt;
 				| : escolhe um dos modos de ataque (0-7)
 				ul
 					li
-						a(href='/wiki/geral/adicio') Ataque de dicionário
+						a(href='/wiki/adicio') Ataque de dicionário
 						|  - 0
 					li
-						a(href='/wiki/geral/adicio') Ataque de combinação
+						a(href='/wiki/adicio') Ataque de combinação
 						|  - 1
 					li
-						a(href='/wiki/geral/fbruta') Ataque de força bruta e ataque de máscara
+						a(href='/wiki/fbruta') Ataque de força bruta e ataque de máscara
 						|  - 3
 					li
-						a(href='/wiki/geral/fbruta') Ataque baseado em regras
+						a(href='/wiki/fbruta') Ataque baseado em regras
 						|  - 0, 6 e 7
 					li
-						a(href='/wiki/geral/fbruta') Ataque de caixa alternada
+						a(href='/wiki/fbruta') Ataque de caixa alternada
 						|  - 7
 					li
-						a(href='/wiki/geral/ahibrido') Ataque híbrido
+						a(href='/wiki/ahibrido') Ataque híbrido
 						|  - 6 e 7
 				li
 					b -h
@@ -91,7 +91,7 @@ block content
 	.container
 		p
 			b
-			a(href='/wiki/geral/fbruta') Ataque de dicionário
+			a(href='/wiki/fbruta') Ataque de dicionário
 		p
 			| Modo de ataque 0  para crackear varios hashes  na lista &quot;
 			code hashMD5.txt
@@ -102,18 +102,18 @@ block content
 			code.tab.block hashcat -a 0 -m 0 hashMD5.txt lista_de_senhas.txt
 		p
 			b
-			a(href='/wiki/geral/fbruta') Ataque baseado em regras
+			a(href='/wiki/fbruta') Ataque baseado em regras
 		p
 			| Modo de ataque 0 para crackear um hash SHA-1 seguindo as regras impostas pelo arquivo &quot;
 			code regras.txt
 			| &quot;). Uma explicação mais completa pode ser encontrada 
-			a(href='hashcat/regras') AQUI
+			a(href='/wiki/hashcat/regras') AQUI
 			| .
 		p
 			code.tab.block hashcat -a 0 -m 100 hashSHA1.txt -r regras.txt
 		p
 			b
-			a(href='/wiki/geral/ahibrido/') Ataque de caixa alternada
+			a(href='/wiki/ahibrido/') Ataque de caixa alternada
 		p
 			| O ataque de caixa alternada pode ser feito usando as regras (ataque 0) do hashcat já que existe o comando &quot;TN&quot; que altera maiúsculo ou minúsculo na casa &quot;N&quot;. Existem regras prontas para serem baixadas e usadas para poder serem usadas 
 			a(href='https://github.com/hashcat/hashcat/tree/master/rules' target='_blank') AQUI&nearr;
@@ -124,7 +124,7 @@ block content
 			code.tab.block hashcat -a 0 -m 100 hashSHA1.txt dicio.txt -r toggle5.rule
 		p
 			b
-			a(href='/wiki/geral/adicio') Ataque de combinação
+			a(href='/wiki/adicio') Ataque de combinação
 		p
 			| Modo de ataque 1 para crackear uma lista de hashes &quot;
 			code hashMD4.txt
@@ -137,16 +137,16 @@ block content
 			code.tab.block hashcat -a 1 -m 900 hashMD4.txt lista_1.txt lista_2.txt
 		p
 			b
-			a(href='/wiki/geral/fbruta') Ataque de força bruta e máscara
+			a(href='/wiki/fbruta') Ataque de força bruta e máscara
 		p
 			| Modo de ataque 3 para crackear um hash MD4 composto de 6 letras (a-z). Uma explicação mais completa pode ser encontrada 
-			a(href='hashcat/fbrutamasc') AQUI
+			a(href='/wiki/hashcat/fbrutamasc') AQUI
 			| .
 		p
 			code.tab.block hashcat -a 3 -m 900 hashMD4.txt ?l?l?l?l?l?l
 		p
 			b
-			a(href='/wiki/geral/ahibrido') Ataque híbrido
+			a(href='/wiki/ahibrido') Ataque híbrido
 		p
 			| Modo de ataque 6 (dicionário + máscara) e 7 (máscara + dicionário). Usando o ataque 6 o ataque será feito com as palavras do dicionário na frente e o ataque de máscara concatenado logo depois, usando o ataque 7 o ataque será feito com as palavras do dicionário concatenado depois do ataque de máscara.
 		p

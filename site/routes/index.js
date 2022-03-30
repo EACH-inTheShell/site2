@@ -23,6 +23,11 @@ router.get('/wiki/:page', function(req, res, next) {
   res.render(`wiki/${req.params.page}`);
 });
 
+router.get('/wiki/:category/:page', function(req, res, next) {
+  console.log(`Getting page ${req.params.category}/${req.params.page}`);
+  res.render(`wiki/${req.params.category}/${req.params.page}`);
+});
+
 router.get('/writeups', function(req, res, next) {
   res.render('writeups/index');
 });

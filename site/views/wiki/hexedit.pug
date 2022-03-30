@@ -3,7 +3,7 @@ extends ../_layouts/default
 block content
 	.subtitle
 		h1
-			a(href='/forense') &larr; #[a(href='') hexedit]
+			a(href='/wiki/forense') &larr; #[a(href='') hexedit]
 
 		sub ferramenta (linux, mac)
 
@@ -16,7 +16,7 @@ block content
 			| O 
 			code hexedit
 			|  é uma ferramenta para ver e editar arquivos em binários pelo terminal. Diferente de um bloco de notas normal é possível mexer com os bytes de um arquivo.
-		img(src='assets/hexedit.png' width='75%')
+		img(src='/images/hexedit.png' width='75%')
 		p
 			| Na interface do hexedit o bloco da esquerda representa o byte inicial da linha, o bloco do meio representa os dados do arquivo em hexadecimal e o bloco da direita representa os dados do arquivo em ASCII (alguns dados não podem ser representados com caracteres ASCII, então eles são representados por pontos &apos;.&apos;)
 	h4#uso.subtitle Uso:
