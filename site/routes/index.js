@@ -10,9 +10,9 @@ router.get('/sobre', function(req, res, next) {
   res.render('sobre/index');
 });
 
-router.get('/atividades', function(req, res, next) {
-  res.render('atividades/index');
-});
+//router.get('/atividades', function(req, res, next) {
+//  res.render('atividades/index');
+//});
 
 router.get('/wiki', function(req, res, next) {
   res.render('wiki/index');
@@ -28,8 +28,16 @@ router.get('/wiki/:category/:page', function(req, res, next) {
   res.render(`wiki/${req.params.category}/${req.params.page}`);
 });
 
-router.get('/writeups', function(req, res, next) {
-  res.render('writeups/index');
+//router.get('/writeups', function(req, res, next) {
+//  res.render('writeups/index');
+//});
+//
+router.get('/links', function(req, res, next) {
+  res.render('links/index');
+});
+
+router.get('/projetos', function(req, res, next) {
+  res.render('projetos/index');
 });
 
 module.exports = router;

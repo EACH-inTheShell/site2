@@ -1,9 +1,17 @@
 extends _layouts/default
 
-block content	
-	.container
+block content
+	.nav-container
+		nav
+			a(href="/links") Links
+			a(href="/sobre") Sobre
+			a(href="/wiki") Wiki
+			a(href="/projetos") Projetos
+	.content-container
 		.title
 			h1 [E]ACH
 			h2 inTheShell_
-		p O grupo de estudos de InfoSec da #[a(href="https://each.usp.br/" target="_blank") EACH-USP&#x2197;], composto por alunes de #[a(href="https://each.usp.br/si/" target="_blank") Sistemas de informação&#x2197;].
-		p Nosso objetivo como um grupo é ser a porta de entrada para o mundo de segurança da informação; dos hackers.
+		.content
+			center 19/03 - Encontro Aberto - Ferramentas
+			center 12/02 - Lançamento do Post
+			center 01/01 - Encontro Aberto - CTF-SSI
