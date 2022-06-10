@@ -1,0 +1,50 @@
+extends ../_layouts/default
+
+block content
+    .subtitle
+        h1
+            a(href='/wiki/web') &larr; #[a(href='') WhatWeb]
+
+        sub ferramenta
+
+    h4#descricao.subtitle Descrição:
+    .container
+        p
+            | O whatweb &eacute; uma ferramenta cujo objetivo &eacute; responder a pergunta &quot;o que &eacute; esse site?&quot;, realizando um scan que retorna informa&ccedil;&otilde;es como tecnologias utilizadas, servidor http utilizado, al&eacute;m de plugins e bibliotecas identificados.
+    h4#uso.subtitle Uso
+    .container
+        p
+            code whatweb [opcoes] &lt;URL&gt;
+        p
+            code -v
+            | : Modo verboso, retornando mais informa&ccedil;&otilde;es sobre as tecnologias identificadas
+        p
+            code -a
+            | : N&iacute;vel de agressividade do scan. O padr&atilde;o &eacute; o n&iacute;vel 1, que faz uma requesta http por alvo. O n&iacute;vel 3 faz mais requisi&ccedil;&otilde;es ap&oacute;s o scan padr&atilde;o e, por fim, o n&iacute;vel 4 faz diversas requisi&ccedil;&otilde;es http de todos os plungins para todos os alvos.
+        p
+            code --header
+            |  ou 
+            code -H
+            | : adiciona um cabe&ccedil;alho http.
+        p
+            code --no-errors
+            | : n&atilde;o apresenta os erros apontados pelo scan.
+    h4#exemplos.subtitle Exemplos
+    .container
+        p
+            | Escaneia o site 
+            a(href='https://intheshell.page/') https://intheshell.page/
+        p
+            code whatweb https://intheshell.page
+        p
+            | Escaneia o site 
+            a(href='https://intheshell.page') https://intheshell.page
+            | , apresentando mais informa&ccedil;&otilde;es sobre cada plugin identificado
+        p
+            code whatweb -v https://intheshell.page
+        p
+            | Escaneia o site 
+            a(href='https://intheshell.page') https://intheshell.page
+            |  com agressividade 3 e sem erros
+        p
+            code whatweb -a 3 --no-errors https://intheshell.page
