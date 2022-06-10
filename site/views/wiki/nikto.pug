@@ -1,0 +1,54 @@
+extends ../_layouts/default
+
+block content
+    .subtitle
+        h1
+            a(href='/wiki/web') &larr; #[a(href='') Nikto]
+
+        sub ferramenta
+
+    h4#descricao.subtitle Descri&ccedil;&atilde;o
+    .container
+        p
+        | O nikto tem como objetivo analisar as configura&ccedil;&otilde;es inseguras mais comuns em web que podem se tornar vulnerabilidades. Dessa forma, ele scanea arquivos, padr&otilde;es e configura&ccedil;&otilde;es, devolvendo quais s&atilde;o inseguras e o porqu&ecirc;.
+    h4#uso.subtitle Uso
+    .container
+        p
+        code nikto [op&ccedil;&otilde;es de alvo] &lt;par&acirc;metros&gt; [outras de scan e relat&oacute;rio]
+        p
+        code -h
+        |  ou 
+        code -host
+        | : Definir qual site ser&aacute; alvo do scan
+        p
+        code -ssl
+        | : Testar&aacute; ssl para portas que possuem https
+        p
+        code -p
+        | : definir portas espec&iacute;ficas para o scan
+        p
+        code -o
+        | : exportar relat&oacute;rio para um arquivo espec&iacute;fico
+        p
+        | Para scanear mais de um site de uma vez, &eacute; poss&iacute;vel colocar todos os dom&iacute;nios num arquivo de texto separados por quebra de linha. Depois, utilizar o arquivo como par&acirc;metro da flag 
+        code -h
+        |  ou 
+        code -host
+    h4#exemplos.subtitle Exemplos
+    .container
+        p
+        | Escanear o site 
+        a(href='https://intheshell.page/') https://intheshell.page/
+        p
+        code nikto -h https://intheshell.page
+        p
+        | Escanear as portas 8080 e 80 do site 
+        a(href='https://intheshell.page') https://intheshell.page
+        p
+        code nikto -h https://intheshell.page/ -p 8080,80
+        p
+        | Escanear o site 
+        a(href='https://intheshell.page') https://intheshell.page
+        |  e devolver o relat&oacute;rio no arquivo &quot;output.txt&quot;
+        p
+        code nikto -h https://intheshell.page -o output.txt
