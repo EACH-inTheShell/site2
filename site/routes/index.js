@@ -10,6 +10,10 @@ router.get('/sobre', function(req, res, next) {
   res.render('sobre/index');
 });
 
+router.get('/membros', function(req, res, next) {
+  res.render('membros/index');
+});
+
 router.get('/atividades', function(req, res, next) {
   res.render('atividades/index');
 });

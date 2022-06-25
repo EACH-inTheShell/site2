@@ -114,3 +114,27 @@ code.block.tab {
 	margin: 0;
 	margin-left: 42px;
 }
+
+.pessoa1 {grid-area: pessoa1;}
+.pessoa2 {grid-area: pessoa2;}
+.pessoa3 {grid-area: pessoa3;}
+.pessoa4 {grid-area: pessoa4;}
+.pessoa5 {grid-area: pessoa5;}
+.pessoa6 {grid-area: pessoa6;}
+
+.grid-container-membros {
+	display: grid;
+	grid-template-areas: 
+		'pessoa1 pessoa2'
+		'pessoa3 pessoa4'
+		'pessoa5 pessoa6';
+	gap: 10px;
+	background-color:#0C0E11;
+	padding: 10px;
+}
+
+.grid-container-membros > div {
+	background-color: #222831;
+	padding: 20px 0;
+	font-size: 30px;
+}
