@@ -1,0 +1,43 @@
+name: intheshell.page
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Generate html files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Create folders
+        run: mkdir -p static/{atividades,sobre,wiki,writeups}
+      - name: Copy public contents
+        run: npm install pug-cli --global
+      - name: Copy public contents
+        run: cp -r site/public/* static
+      - name: Generate html (index and error)
+        run: pug -P site/views/{index,error}.pug -o static
+      - name: Generate html (atividades)
+        run: pug -P site/views/atividades -o static/atividades
+      - name: Generate html (writeups)
+        run: pug -P site/views/writeups -o static/writeups
+      - name: Generate html (sobre)
+        run: pug -P site/views/sobre -o static/sobre
+      - name: Generate html (wiki)
+        run: pug -P site/views/wiki -o static/wiki
+      - name: Fix href
+        run: |
+            files_search=$(find static -name '*.html')
+            files_sub=$(echo "$files_search" | sed -e 's/static\///g' -e 's/\.html//g' -e 's/[\.*^$[\/]/\\&/g')
+            for f1 in $files_sub; do
+                for f2 in $files_search; do
+                    sed -i "s/href=\"\/$f1\"/href=\"\/$f1.html\"/g" "$f2"
+                done
+            done
+      - name: Upload to S3
+        env:
+          AWS_EC2_METADATA_DISABLED: true
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: aws s3 sync ./static/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
