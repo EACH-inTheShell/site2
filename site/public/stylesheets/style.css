@@ -8,9 +8,20 @@ body {
 	font: 17px "Roboto Mono", mono, serif;
 }
 
+h1 {
+	color: #d65a31;
+}
+
 a {
 	text-decoration: none;
 	color: #d65a31;
+}
+
+a.button {
+	color: #e4e4e4;
+	background-color: #d65a31;
+	padding: 3px;
+	border-radius: 3px;
 }
 
 nav {
@@ -57,9 +68,15 @@ code.block.tab {
 	height: 30px;
 }
 
+.nav-bar {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	width: 100%;
+}
+
 .nav-bar a {
 	padding: 8px;
-	margin-left: 70px;
 }
 
 .nav-container {
@@ -76,7 +93,7 @@ code.block.tab {
 }
 
 .container {
-	max-width: 800px;
+	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 50px;
@@ -101,8 +118,83 @@ code.block.tab {
 	margin-left: 20px;
 }
 
-#lista-categoria {
-	font-size: 1.2em;
+.members {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.member {
+	display: flex;
+	align-items: center;
+	width: 50%;
+	margin-bottom: 30px;
+}
+
+.member .image {
+	height: 100px;
+	flex-basis: 100px;
+	flex-grow: 0;
+	flex-shrink: 0;
+	border-width: 50%;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-right: 15px;
+}
+
+.member img {
+	display: inline;
+	margin: 0 auto;
+	height: 100%;
+	width: auto;
+}
+
+.member .text {
+	/*flex-grow: 1;*/
+}
+
+.member h5 {
+	font-size: 1.5em;
+	color: #d65a31;
+	margin: 0 0 5px 0;
+}
+
+.member h6 {
+	font-size: 1em;
+	margin: 0 0 5px 0;
+}
+
+.member p {
+	font-size: .8em;
+	margin: 0;
+}
+
+.member .links {
+	display: flex;
+	margin: 7px 0 0 0;
+}
+
+.member .link {
+	font-size: .8em;
+	color: #e4e4e4;
+	background-color: #d65a31;
+	padding: 0 3px;
+	border-radius: 3px;
+	margin-right: 7px;
+}
+
+.member .tags {
+	display: flex;
+	margin: 10px 0;
+}
+
+.member .tag {
+	font-size: .8em;
+	padding: 0 3px;
+	margin-right: 7px;
+	background-color: #e4e4e4;
+	color: #222831;
+	padding: 0 3px;
+	border-radius: 3px;
 }
 
 #lista-categoria li {
@@ -113,4 +205,8 @@ code.block.tab {
 #type {
 	margin: 0;
 	margin-left: 42px;
+}
+
+#fosseis-button {
+	cursor: pointer;
 }
