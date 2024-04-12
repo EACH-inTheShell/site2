@@ -32,7 +32,7 @@ jobs:
         run: cp -r site/public/* static
 
       - name: Generate html (index and error)
-        run: pug -P site/views/{index,error}.pug -o static
+        run: pug -P site/views/{index,404}.pug -o static
 
       - name: Generate html (atividades)
         run: pug -P site/views/atividades -o static/atividades
