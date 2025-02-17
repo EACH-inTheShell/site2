@@ -13,7 +13,7 @@ Linux
 
 ## Adicionando membros
 
-No arquivo `site\vews\sobre\membros\index.pug` 
+No arquivo `site\views\sobre\membros\index.pug` 
 
 Use o trecho de código, que deve ser adicionado após a linha 7, como exemplo:
 
